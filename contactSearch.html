@@ -1,0 +1,47 @@
+<template>
+    <lightning-card title="Contact Search">
+
+        <!-- Search Section -->
+        <div class="slds-p-around_medium">
+            <lightning-input label="First Name" value={firstName} onchange={handleInput}></lightning-input>
+            <lightning-input label="Last Name" value={lastName} onchange={handleInput}></lightning-input>
+            <lightning-input label="Email" value={email} onchange={handleInput}></lightning-input>
+
+            <lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
+        </div>
+
+        <!-- Data Table -->
+        <lightning-datatable
+            key-field="Id"
+            data={contacts}
+            columns={columns}
+            onrowaction={handleRowAction}>
+        </lightning-datatable>
+
+    </lightning-card>
+
+    <!-- Edit Modal -->
+    <template if:true={showModal}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <h2>Edit Contact</h2>
+                </header>
+
+                <div class="slds-modal__content">
+                    <lightning-input label="First Name" value={editRecord.FirstName} onchange={handleEdit}></lightning-input>
+                    <lightning-input label="Last Name" value={editRecord.LastName} onchange={handleEdit}></lightning-input>
+                    <lightning-input label="Email" value={editRecord.Email} onchange={handleEdit}></lightning-input>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closeModal}></lightning-button>
+                    <lightning-button label="Save" variant="brand" onclick={saveContact}></lightning-button>
+                </footer>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

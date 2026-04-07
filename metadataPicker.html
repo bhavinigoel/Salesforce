@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Dynamic Metadata Picker">
+
+        <!-- Object Picklist -->
+        <lightning-combobox
+            label="Select Object"
+            value={selectedObject}
+            options={objectOptions}
+            onchange={handleObjectChange}>
+        </lightning-combobox>
+
+        <!-- Field Picklist -->
+        <template if:true={fieldOptions}>
+            <lightning-combobox
+                label="Select Field"
+                value={selectedField}
+                options={fieldOptions}
+                onchange={handleFieldChange}>
+            </lightning-combobox>
+        </template>
+
+        <!-- Display API Name -->
+        <template if:true={selectedField}>
+            <p style="margin-top:10px;">
+                <b>Field API Name:</b> {selectedField}
+            </p>
+        </template>
+
+    </lightning-card>
+</template>
